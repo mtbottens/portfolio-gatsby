@@ -9,7 +9,7 @@ class BlogIndex extends Component {
             <div>
                 {pages.map(page => page.node).map(page => 
                     <div key={page.id}>
-                        <Link to={'blog/' + page.slug}>{'blog/' + page.slug}</Link>
+                        <Link to={'/blog/' + page.slug}>{'blog/' + page.slug}</Link>
                         <div dangerouslySetInnerHTML={{__html: page.excerpt.childMarkdownRemark.html}} />
                         <p>{page.created_at}</p>
                     </div>
