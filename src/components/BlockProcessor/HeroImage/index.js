@@ -11,9 +11,9 @@ class HeroImage extends Component {
         return (
             <div className={styles.hero}>
                 <div className={styles['hero-image']}>
-                    <Img sizes={this.props.image.childImageSharp.sizes}/>
+                    <Img sizes={this.props.image.sizes}/>
                 </div>
-                <div className={styles['hero-content']} dangerouslySetInnerHTML={{__html:this.props.text.childMarkdownRemark.html}} />
+                <div className={styles['hero-content']} dangerouslySetInnerHTML={{__html:this.props.text.html}} />
             </div>
         );
     }

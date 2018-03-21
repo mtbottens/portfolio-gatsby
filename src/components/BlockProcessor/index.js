@@ -20,7 +20,7 @@ class BlockProcessor extends Component {
                 {this.props.blocks.map(block => {
                     const Block = this.types[block.type];
 
-                    return <Block key={block.id} image={block.childImageContent} text={block.childTextContent} />
+                    return <Block key={block.id} image={block.image_content.childImageSharp} text={block.text_content.childMarkdownRemark} />
                 })}
             </div>
         );

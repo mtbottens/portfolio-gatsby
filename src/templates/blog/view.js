@@ -4,7 +4,7 @@ import BlockProcessor from '../../components/BlockProcessor'
 
 class BlogView extends Component {
     render() {
-        const {directusPage: {blocks: {childrenDirectusBlock: blocks}}} = this.props.data;
+        const {directusPage: {blocks}} = this.props.data;
         return (
             <div>
                 <BlockProcessor blocks={blocks} />
@@ -24,19 +24,17 @@ export const pageQuery = graphql`
         directusPage(slug: {eq: $slug}) {
             created_at
             blocks {
-                childrenDirectusBlock {
-                    id
-                    type
-                    childTextContent {
-                        childMarkdownRemark {
-                            html
-                        }
+                id
+                type
+                text_content {
+                    childMarkdownRemark {
+                        html
                     }
-                    childImageContent {
-                        childImageSharp {
-                            sizes {
-                                ...GatsbyImageSharpSizes
-                            }
+                }
+                image_content {
+                    childImageSharp {
+                        sizes {
+                            ...GatsbyImageSharpSizes
                         }
                     }
                 }

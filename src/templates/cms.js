@@ -4,7 +4,7 @@ import BlockProcessor from '../components/BlockProcessor'
 
 class CmsPage extends Component {
     render() {
-        const {directusPage: {blocks: {childrenDirectusBlock: blocks}}} = this.props.data;
+        const {directusPage: {blocks}} = this.props.data;
         return (
             <div>
                 <BlockProcessor blocks={blocks} />
@@ -23,19 +23,17 @@ export const pageQuery = graphql`
     query contactPageQuery($slug: String!){
         directusPage(slug: {eq: $slug}) {
             blocks {
-                childrenDirectusBlock {
-                    id
-                    type
-                    childTextContent {
-                        childMarkdownRemark {
-                            html
-                        }
+                id
+                type
+                text_content {
+                    childMarkdownRemark {
+                        html
                     }
-                    childImageContent {
-                        childImageSharp {
-                            sizes {
-                                ...GatsbyImageSharpSizes
-                            }
+                }
+                image_content {
+                    childImageSharp {
+                        sizes {
+                            ...GatsbyImageSharpSizes
                         }
                     }
                 }
