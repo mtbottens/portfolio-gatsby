@@ -27,7 +27,21 @@ export default BlogIndex
 
 export const pageQuery = graphql`
     query blogIndexQuery($path: String!){
-        allDirectusPage(filter: {page_type: {data: {path: {eq: $path}}}}) {
+        allDirectusPage(
+            filter: {
+                page_type: {
+                    data: {
+                        path: {
+                            eq: $path
+                        }
+                    }
+                }
+            },
+            sort: {
+                order: DESC,
+                fields: [created_at]
+            }
+        ) {
             edges {
                 node {
                     id

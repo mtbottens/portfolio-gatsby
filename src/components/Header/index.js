@@ -10,18 +10,27 @@ class Header extends Component {
     }
     this.toggleMenu = this.toggleMenu.bind(this)
     this.getMenuClasses = this.getMenuClasses.bind(this)
+    this.getNavClasses = this.getNavClasses.bind(this);
   }
 
   toggleMenu() {
+    var newState = !this.state.active;
     this.setState({
-      active: !this.state.active
+      active: newState
     })
+    this.props.setNavState(newState)
   }
 
   getMenuClasses() {
     const classes = [styles.hamburgerInner]
     if (this.state.active) classes.push(styles.hamburgerInnerActive)
     return classes.join(' ')
+  }
+
+  getNavClasses() {
+    const classes = [styles.mobileNav];
+    if (this.state.active) classes.push(styles.mobileNavOpen);
+    return classes.join(' ');
   }
 
   render() {
@@ -34,11 +43,11 @@ class Header extends Component {
             <span className={this.getMenuClasses()}></span>
           </span>
         </button>
-        <nav>
+        <nav className={this.getNavClasses()}>
           <ul>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/blog">Blog</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/about" onClick={this.toggleMenu}>About</Link></li>
+            <li><Link to="/blog" onClick={this.toggleMenu}>Blog</Link></li>
+            <li><Link to="/contact" onClick={this.toggleMenu}>Contact</Link></li>
           </ul>
         </nav>
       </header>

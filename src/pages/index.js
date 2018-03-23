@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
+require("prismjs/themes/prism.css")
 
 const IndexPage = () => (
   <div>

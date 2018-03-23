@@ -16,8 +16,15 @@ module.exports = {
         pathToConfigModule: 'src/utils/typography.js'
       }
     },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          `gatsby-remark-prismjs`
+        ]
+      }
+    },
     'gatsby-plugin-react-helmet',
-    'gatsby-transformer-remark',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sass'

@@ -1,0 +1,17 @@
+@import '../styles/variables';
+
+.page {
+    transition: 200ms transform ease-in-out;
+    background: white;
+    min-height: 100vh;
+};
+
+.pageNavOpen {
+    transform: scale(0.7) translateY(100px);
+    box-shadow: 0 -2px 5px darken($dark-gray, 20%);
+}
+
+.wrapper {
+    background: $dark-gray;
+    position: relative;
+}

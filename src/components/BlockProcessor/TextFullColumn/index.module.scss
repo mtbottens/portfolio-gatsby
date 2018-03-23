@@ -1,0 +1,13 @@
+@import '../../../styles/variables';
+
+.textFullColumn {
+    padding: $small-spacing;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 769px) {
+    .textFullColumn {
+        padding: $layout-spacing;
+    }
+}
