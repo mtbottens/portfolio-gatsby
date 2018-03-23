@@ -14,6 +14,7 @@ class Header extends Component {
   }
 
   toggleMenu() {
+    if (window.innerWidth > 768) return;
     var newState = !this.state.active;
     this.setState({
       active: newState
