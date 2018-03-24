@@ -11,18 +11,21 @@ const getPageTypeTemplateByNode = (node) => {
 };
 
 const getPageTemplateByNode = (node) => {
-    if (node.page_type.data.is_singleton) {
-        return path.resolve(`${PAGE_TEMPLATE_DIRECTORY}/${node.page_type.data.path}.js`);
+    if (!node.page_type.path) {
+        return false;
+    }
+    if (node.page_type.is_singleton) {
+        return path.resolve(`${PAGE_TEMPLATE_DIRECTORY}/${node.page_type.path}.js`);
     } else {
-        return path.resolve(`${PAGE_TEMPLATE_DIRECTORY}/${node.page_type.data.path}/view.js`);
+        return path.resolve(`${PAGE_TEMPLATE_DIRECTORY}/${node.page_type.path}/view.js`);
     }
 };
 
 const getPagePathByNode = (node) => {
-    if (node.page_type.data.is_singleton) {
+    if (node.page_type.is_singleton) {
         return `${node.slug}`;
     } else {
-        return `${node.page_type.data.path}/${node.slug}`;
+        return `${node.page_type.path}/${node.slug}`;
     }
 };
 
@@ -71,10 +74,8 @@ const createPages = ({createPage, graphql}) => {
                             node {
                                 slug
                                 page_type {
-                                    data {
-                                        path
-                                        is_singleton
-                                    }
+                                    path
+                                    is_singleton
                                 }
                             }
                         }
@@ -85,13 +86,18 @@ const createPages = ({createPage, graphql}) => {
                     reject(result.errors);
                 }
                 result.data.allDirectusPage.edges.forEach((edge) => {
-                    createPage({
-                        path: getPagePathByNode(edge.node),
-                        component: getPageTemplateByNode(edge.node),
-                        context: {
-                            slug: edge.node.slug
-                        }
-                    });
+                    let path = getPagePathByNode(edge.node),
+                        component = getPageTemplateByNode(edge.node);
+
+                    if (path && component) {
+                        createPage({
+                            path,
+                            component,
+                            context: {
+                                slug: edge.node.slug
+                            }
+                        });
+                    }
                 });
             })
         )

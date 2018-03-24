@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import BlockProcessor from '../components/BlockProcessor'
+import StructureProcessor from '../components/StructureProcessor'
 
 class CmsPage extends Component {
     render() {
-        const {directusPage: {blocks}} = this.props.data;
+        const {directusPage: {structures}} = this.props.data;
         return (
             <div>
-                <BlockProcessor blocks={blocks} />
+                <StructureProcessor structures={structures} />
             </div>
         )
     }
@@ -22,18 +22,29 @@ export default CmsPage;
 export const pageQuery = graphql`
     query contactPageQuery($slug: String!){
         directusPage(slug: {eq: $slug}) {
-            blocks {
+            structures {
                 id
-                type
-                text_content {
-                    childMarkdownRemark {
-                        html
-                    }
+                type {
+                    id
+                    columns_per_row
+                    blocks_per_column
                 }
-                image_content {
-                    childImageSharp {
-                        sizes {
-                            ...GatsbyImageSharpSizes
+                full_width
+                blocks {
+                    id
+                    type {
+                        type
+                    }
+                    text_content {
+                        childMarkdownRemark {
+                            html
+                        }
+                    }
+                    image_content {
+                        childImageSharp {
+                            sizes {
+                                ...GatsbyImageSharpSizes
+                            }
                         }
                     }
                 }

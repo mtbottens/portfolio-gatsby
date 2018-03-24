@@ -30,10 +30,8 @@ export const pageQuery = graphql`
         allDirectusPage(
             filter: {
                 page_type: {
-                    data: {
-                        path: {
-                            eq: $path
-                        }
+                    path: {
+                        eq: $path
                     }
                 }
             },

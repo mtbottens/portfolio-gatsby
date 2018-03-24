@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "gatsby": "^1.9.158",
-    "gatsby-directus": "0.0.8",
+    "gatsby": "^1.9.240",
+    "gatsby-directus": "0.0.9",
     "gatsby-image": "^1.0.35",
     "gatsby-link": "^1.6.34",
     "gatsby-plugin-react-helmet": "^2.0.3",
