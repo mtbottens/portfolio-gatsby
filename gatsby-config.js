@@ -7,7 +7,8 @@ module.exports = {
       resolve: `gatsby-directus`,
       options: {
         url: `${process.env.GATSBY_DIRECTUS_URL}`,
-        accessToken: `${process.env.GATSBY_DIRECTUS_ACCESS_TOKEN}`
+        accessToken: `${process.env.GATSBY_DIRECTUS_ACCESS_TOKEN}`,
+        advancedImageProcessingEnabled: true
       }
     },
     {
